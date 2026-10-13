@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A simple student marks management system built with JavaScript arrays.">
+  <title>Student Marks Management System</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-content">
+      <div>
+        <p class="eyebrow">ARRAY DATA STRUCTURE PROJECT</p>
+        <h1>Student Marks Manager</h1>
+        <p class="subtitle">Record marks, calculate grades, and review class performance.</p>
+      </div>
+      <div class="header-badge" aria-hidden="true">SMS</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="summary-grid" aria-label="Class summary">
+      <article class="summary-card">
+        <span class="summary-label">Students</span>
+        <strong id="student-count">0</strong>
+      </article>
+      <article class="summary-card">
+        <span class="summary-label">Class average</span>
+        <strong id="class-average">—</strong>
+      </article>
+      <article class="summary-card">
+        <span class="summary-label">Highest mark</span>
+        <strong id="highest-mark">—</strong>
+      </article>
+      <article class="summary-card">
+        <span class="summary-label">Pass rate</span>
+        <strong id="pass-rate">—</strong>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">ADD A RECORD</p>
+          <h2>Student details</h2>
+        </div>
+        <p class="helper">Marks must be between 0 and 100.</p>
+      </div>
+      <form id="student-form">
+        <div class="form-grid">
+          <label>
+            Student name
+            <input id="student-name" name="studentName" type="text" maxlength="80"
+                   placeholder="e.g. Ama Mensah" required>
+          </label>
+          <label>
+            Student ID
+            <input id="student-id" name="studentId" type="text" maxlength="30"
+                   placeholder="e.g. IT2026-001" required>
+          </label>
+          <label>
+            Marks (0–100)
+            <input id="student-marks" name="studentMarks" type="number" min="0" max="100"
+                   step="0.5" placeholder="e.g. 85" required>
+          </label>
+        </div>
+        <div class="form-actions">
+          <button class="button primary" type="submit">Add student</button>
+          <button class="button secondary" id="load-sample" type="button">Load sample data</button>
+        </div>
+        <p id="form-message" class="message" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading table-heading">
+        <div>
+          <p class="eyebrow">CLASS RECORDS</p>
+          <h2>Student results</h2>
+        </div>
+        <div class="table-actions">
+          <input id="search-input" class="search-input" type="search" placeholder="Search name or ID"
+                 aria-label="Search students by name or ID">
+          <button class="button secondary" id="export-csv" type="button">Export CSV</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">No.</th>
+              <th scope="col">Student ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Mark</th>
+              <th scope="col">Grade</th>
+              <th scope="col">Remark</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody id="student-table-body">
+            <tr class="empty-row"><td colspan="7">No students yet. Add a student or load sample data.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="bottom-actions">
+        <p class="helper">Passing mark: 50. Data is saved in this browser on this device.</p>
+        <button class="button danger-outline" id="clear-all" type="button">Clear all records</button>
+      </div>
+    </section>
+
+    <section class="note-panel">
+      <h2>How arrays are used</h2>
+      <p>This application keeps student IDs, names, and marks in JavaScript arrays. The same index in each array refers to the same student. The program loops through the arrays to display results and calculate the class summary.</p>
+    </section>
+    <footer>Student Marks Management System · Built with HTML, CSS and JavaScript</footer>
+  </main>
+
+  <dialog id="confirm-dialog" class="confirm-dialog">
+    <form method="dialog">
+      <h2>Clear all records?</h2>
+      <p>This will remove all student records saved in this browser. This action cannot be undone.</p>
+      <div class="form-actions">
+        <button class="button secondary" value="cancel">Cancel</button>
+        <button class="button danger" id="confirm-clear" value="confirm">Clear records</button>
+      </div>
+    </form>
+  </dialog>
+</body>
+</html>
